@@ -22,7 +22,10 @@ datasource db {
 
 model User {
   id            String    @id @default(cuid())
+  firstName     String
+  lastName      String
   name          String
+  role          UserRole  @default(USER)    
   email         String
   emailVerified Boolean
   image         String?
@@ -35,6 +38,10 @@ model User {
   @@map("user")
 }
 
+enum UserRole {
+  ADMIN
+  USER
+}
 model Session {
   id        String    @id @default(cuid())
   expiresAt DateTime
